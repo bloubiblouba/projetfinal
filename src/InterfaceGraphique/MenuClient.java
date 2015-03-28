@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package InterfaceGraphique;
+
+import gestiondereservation.GestionDeReservation;
 
 /**
  *
@@ -11,12 +9,14 @@ package InterfaceGraphique;
  */
 public class MenuClient extends javax.swing.JFrame {
     private String nom;
+    private GestionDeReservation pacc;
 
     /**
      * Creates new form MenuClient
      */
-    public MenuClient(String name) {
+    public MenuClient(String name, GestionDeReservation pacc) {
         initComponents();
+        this.pacc=pacc;
         
         nom = name;
         labelnom.setText(nom);
@@ -42,6 +42,11 @@ public class MenuClient extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Rechercher un vol");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Créer réservation");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +116,11 @@ public class MenuClient extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        RechercheVol rv = new RechercheVol (pacc);
+        rv.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

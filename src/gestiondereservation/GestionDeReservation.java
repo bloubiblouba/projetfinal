@@ -20,8 +20,8 @@ public class GestionDeReservation {
         TabVol = new ArrayList();
         TabAeroport = new ArrayList();
 
-        admin = new Client("Tartampion", "Patapouf", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
-        client1 = new Client("Jean-Jacques", "Patalucci", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
+        admin = new Client("Agent Tartampion", "Patapouf", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
+        client1 = new Client("Agent Michel", "Patalucci", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
         aeroport1 = new Aeroport ("PAPETE123", "Papeete", "Rue de l'île", "06 65 48 75 95");
         aeroport2 = new Aeroport ("BERLIN456", "Berlin", "Rue de l'Allemagne", "87 95 68 54 47");
         aeroport3 = new Aeroport ("PORTAU789", "Port au Prince", "Rue de Faubert", "98 65 32 65 45");
@@ -188,6 +188,43 @@ public class GestionDeReservation {
         
     }
     
+    public int testAeroport (String num, String nom, String adresse, String tel){
+      int t = 0;
+        if (!num.isEmpty()&& !nom.isEmpty()&& !adresse.isEmpty()&& !tel.isEmpty()){
+            t = 1;
+        }
+                    
+        if (!TabAeroport.isEmpty()) {
+            for (int i = 0; i < TabAeroport.size(); i++) {
+                if (TabAeroport.get(i).getNumero_aeroport().equalsIgnoreCase(num)) {
+                    t = 1;
+                    
+                }
+
+            }
+        }
+        return t;
+        
+    }
+    
+    public Vol RechercherVol(String nomdest, String nomorigine){
+        Vol v, trouve = null;
+        int i=0, j = 0;
+        if (!TabVol.isEmpty()) {
+        while (i<TabVol.size() && trouve==null)
+        {
+        
+        v = TabVol.get(i);
+        if (v.getAeroOri().getNom_aeroport().equalsIgnoreCase(nomorigine) && v.getAeroDest().getNom_aeroport().equalsIgnoreCase(nomdest))
+            {
+            trouve = v;
+            }
+            i++;
+            }
+            }
+        return trouve;
+        }
+
     
     public ArrayList<Aeroport> getTab_aeroport() {
         return TabAeroport;

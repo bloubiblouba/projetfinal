@@ -6,14 +6,16 @@ public class Aeroport {
     private String nom_aeroport;
     private String adresse;
     private String telephone;
-    private ArrayList<Vol> TabVols;
+    private ArrayList<Vol> TabVolsDestination;
+    private ArrayList<Vol> TabVolsOrigine;
     
 public Aeroport (String num_a, String nom_a, String ad, String tel){
     numero_aeroport = num_a;
     nom_aeroport = nom_a;
     adresse = ad;
     telephone = tel;
-    TabVols = new ArrayList();
+    TabVolsDestination = new ArrayList();
+    TabVolsOrigine = new ArrayList();
 }
 
     public String getNumero_aeroport() {
@@ -48,14 +50,30 @@ public Aeroport (String num_a, String nom_a, String ad, String tel){
         this.telephone = telephone;
     }
 
-    public ArrayList<Vol> getTabVols() {
-        return TabVols;
+    public ArrayList<Vol> getTabVolsDestination() {
+        return TabVolsDestination;
     }
 
-    public void setTabVols(ArrayList<Vol> TabVols) {
-        this.TabVols = TabVols;
+    public void setTabVolsDestination(ArrayList<Vol> TabVolsDestination) {
+        this.TabVolsDestination = TabVolsDestination;
     }
 
+    public ArrayList<Vol> getTabVolsOrigine() {
+        return TabVolsOrigine;
+    }
+
+    public void setTabVolsOrigine(ArrayList<Vol> TabVolsOrigine) {
+        this.TabVolsOrigine = TabVolsOrigine;
+    }
+
+    public void setVolsOrigine (Vol v){
+        this.TabVolsOrigine.add(v);
+    }
+    
+    public void setVolsDestination (Vol v){
+        this.TabVolsDestination.add(v);
+    }
+ 
     
 
 }

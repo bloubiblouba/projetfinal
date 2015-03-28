@@ -11,19 +11,19 @@ import gestiondereservation.Client;
 import java.util.ArrayList;
 
 public class CreerVol extends javax.swing.JFrame {
-        private GestionDeReservation ca;
+        private GestionDeReservation pacc;
         private ArrayList<Aeroport> aer;
         private ArrayList<Vol> vol;
         private String [] liste, liste2;
         private int nb, nbcurrent, selectionne, selectionne2;
+        private Aeroport a;
 
-    public GestionDeReservation pacc;
 
-    public CreerVol(GestionDeReservation pa) {
+    public CreerVol(GestionDeReservation pacc) {
         initComponents();
         
         //instance principale
-        ca = pa;
+        this.pacc=pacc;
         
         //taille liste et 
         nb = 200;
@@ -33,7 +33,7 @@ public class CreerVol extends javax.swing.JFrame {
         liste = new String [nb];
         
         //liste des aeroports
-        aer=ca.ListeAeroport();
+        aer=pacc.ListeAeroport();
         for (int i = 0; i<aer.size();i++)
             {
                     liste[i] = aer.get(i).getNumero_aeroport()+" "+aer.get(i).getNom_aeroport();
@@ -45,10 +45,10 @@ public class CreerVol extends javax.swing.JFrame {
         
         //liste des vols d
         liste2 = new String [nb];
-        vol=ca.ListeVol();
+        vol=pacc.ListeVol();
         for (int i = 0; i<vol.size();i++)
             {
-                    liste2[i] = vol.get(i).getNumero_vol()+ " " + vol.get(i).getAeroOri().getNom_aeroport()+" "+vol.get(i).getAeroDest().getNom_aeroport();
+              liste2[i] = vol.get(i).getNumero_vol()+ " " + vol.get(i).getAeroOri().getNom_aeroport()+" "+vol.get(i).getAeroDest().getNom_aeroport();
              }
 
         listevols.setListData(liste2);
@@ -137,6 +137,11 @@ public class CreerVol extends javax.swing.JFrame {
         });
 
         jButton3.setText("Quitter");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -295,15 +300,31 @@ public class CreerVol extends javax.swing.JFrame {
         aa = aer.get(selectionne);
         ad = aer.get(selectionne2);
         
+        if (!numero.isEmpty()&& !datedep.isEmpty()&& !datearr.isEmpty()&& !heuredep.isEmpty() && !heurearr.isEmpty() && !prixpremiere.isEmpty() && !nombrepremiere.isEmpty() && !prixseconde.isEmpty() && !personneseconde.isEmpty())
+        {
+            
+        
+        if (!aa.getNom_aeroport().equalsIgnoreCase(ad.getNom_aeroport())){
+            
+        
         Vol v = null;
         int result;
-        result = ca.testVol(numero);
+        result = pacc.testVol(numero);
             if (result == 0) {
                 
-                v = ca.CreerVol(numero, datedep, datearr, heuredep, heurearr, prixpremiere, nombrepremiere, prixseconde, personneseconde, aa, ad );
-            } else {
+                v = pacc.CreerVol(numero, datedep,
+                        datearr, heuredep, heurearr, prixpremiere, 
+                        nombrepremiere, prixseconde, personneseconde, aa, ad );
+                        
+                aa.setVolsOrigine(v);
                 
-                ErreurPersonne enp = new ErreurPersonne(ca);
+                ad.setVolsDestination(v);
+
+            } 
+            //Cas ou le numero de vols existent déjà
+            else {
+
+                ErreurPersonne enp = new ErreurPersonne(pacc);
                 enp.setVisible(true);
                 
             }
@@ -312,12 +333,32 @@ public class CreerVol extends javax.swing.JFrame {
                 listevols.setListData(liste2);
                 nbcurrent++;
             }
-      
+        }
+        //Cas ou les aeroports d'arrivée et de destination sont les mêmes
+        else{
+
+            ErreurPersonne enp = new ErreurPersonne(pacc);
+            enp.setVisible(true);
+            
+        }
+        }
+        //Cases non remplies
+        else{
+
+            ErreurPersonne enp = new ErreurPersonne(pacc);
+            enp.setVisible(true);
+                }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    this.dispose();
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

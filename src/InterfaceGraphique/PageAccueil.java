@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package InterfaceGraphique;
-/**
- *
- * @author Dihya
- */
+
 import gestiondereservation.GestionDeReservation;
 public class PageAccueil extends javax.swing.JFrame {
 private GestionDeReservation pacc;
@@ -92,7 +89,7 @@ private GestionDeReservation pacc;
                         .addContainerGap()
                         .addComponent(signup)
                         .addGap(133, 133, 133)))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +169,7 @@ private GestionDeReservation pacc;
 
                 } else {
 
-                    MenuClient mc = new MenuClient(nom);
+                    MenuClient mc = new MenuClient(nom,pacc);
                     mc.setVisible(true);
                     this.dispose();
 
