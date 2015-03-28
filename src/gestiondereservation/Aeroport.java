@@ -16,6 +16,7 @@ public Aeroport (String num_a, String nom_a, String ad, String tel){
     telephone = tel;
     TabVolsDestination = new ArrayList();
     TabVolsOrigine = new ArrayList();
+    
 }
 
     public String getNumero_aeroport() {

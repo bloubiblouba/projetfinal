@@ -120,6 +120,11 @@ public class CreerVol extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listevols.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listevolsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listevols);
 
         jButton1.setText("Valider");
@@ -359,6 +364,10 @@ public class CreerVol extends javax.swing.JFrame {
     this.dispose();
     // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void listevolsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listevolsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listevolsMouseClicked
 
     /**
      * @param args the command line arguments

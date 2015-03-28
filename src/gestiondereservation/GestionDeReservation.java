@@ -10,6 +10,7 @@ public class GestionDeReservation {
     private ArrayList<Vol> TabVol;
     private ArrayList<Aeroport> TabAeroport;
     private Client admin, client1;
+    private Vol vol1, vol2;
     private Aeroport aeroport1, aeroport2, aeroport3, aeroport4;
 //Constructeur de main
 
@@ -21,18 +22,31 @@ public class GestionDeReservation {
         TabAeroport = new ArrayList();
 
         admin = new Client("Agent Tartampion", "Patapouf", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
-        client1 = new Client("Agent Michel", "Patalucci", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
+        client1 = new Client("Michel", "Patalucci", "0666666666", "01", "Champs Elysées", "Paris", "75016", "client", "client");
         aeroport1 = new Aeroport ("PAPETE123", "Papeete", "Rue de l'île", "06 65 48 75 95");
         aeroport2 = new Aeroport ("BERLIN456", "Berlin", "Rue de l'Allemagne", "87 95 68 54 47");
         aeroport3 = new Aeroport ("PORTAU789", "Port au Prince", "Rue de Faubert", "98 65 32 65 45");
         aeroport4 = new Aeroport ("SIDNEY852", "Sidney", "Rue du Kangourou", "98 65 46 31 32");
-        
+
+                
+               
+          
         TabClient.add(admin);
         TabClient.add(client1);
         TabAeroport.add(aeroport1);
         TabAeroport.add(aeroport2);
         TabAeroport.add(aeroport3);
         TabAeroport.add(aeroport4);
+        
+        vol1 = new Vol ("123", "12","15","4" ,"5" ,"12€","1", "45","48", TabAeroport.get(0),TabAeroport.get(1));
+        vol2 = new Vol ("52", "12","15","4" ,"5" ,"12€","1", "45", "78", TabAeroport.get(2),TabAeroport.get(3));
+        TabVol.add(vol1);
+        TabVol.add(vol2);
+        
+        aeroport1.setVolsOrigine(vol1);
+        aeroport2.setVolsDestination(vol1);
+        aeroport3.setVolsOrigine(vol2);
+        aeroport4.setVolsDestination(vol2);
     }
 
     public Personne CreerPersonne(String n, String pm, String t, String nr, String nomr, String v, String c) {
@@ -207,9 +221,9 @@ public class GestionDeReservation {
         
     }
     
-    public Vol RechercherVol(String nomdest, String nomorigine){
+    public Vol RechercherVol(String nomorigine, String  nomdest){
         Vol v, trouve = null;
-        int i=0, j = 0;
+        int i=0;
         if (!TabVol.isEmpty()) {
         while (i<TabVol.size() && trouve==null)
         {
