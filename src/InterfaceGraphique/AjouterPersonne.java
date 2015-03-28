@@ -8,12 +8,14 @@ package InterfaceGraphique;
 import gestiondereservation.Client;
 import gestiondereservation.GestionDeReservation;
 import gestiondereservation.Personne;
+import java.util.ArrayList;
 
 public class AjouterPersonne extends javax.swing.JFrame {
 private GestionDeReservation ap;
 private String [] liste;
 private int nb;
-private int nbcurrent=1;
+private int nbcurrent=2;
+private ArrayList<Client> cli; 
 
    
     public AjouterPersonne(GestionDeReservation pacc) {
@@ -21,7 +23,12 @@ private int nbcurrent=1;
         ap = pacc;
         nb = 200;
         liste = new String [nb];
-        liste[0]=ap.retourneAdmin();
+        cli=ap.listeClient();
+        for (int i = 0; i<cli.size();i++)
+            {
+                    liste[i] = cli.get(i).getNom()+" "+cli.get(i).getPrenom();
+             }
+
         listepers.setListData(liste);
     }
 
@@ -314,7 +321,7 @@ private int nbcurrent=1;
         
       
         this.setVisible(false);
-        String nom=ap.retourneAdmin2();
+
         System.out.println(nom);
     }//GEN-LAST:event_jButton2ActionPerformed
 

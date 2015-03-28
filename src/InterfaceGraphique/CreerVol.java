@@ -12,16 +12,46 @@ import java.util.ArrayList;
 
 public class CreerVol extends javax.swing.JFrame {
         private GestionDeReservation ca;
-        private ArrayList<Aeroport> liste;
+        private ArrayList<Aeroport> aer;
+        private ArrayList<Vol> vol;
+        private String [] liste, liste2;
+        private int nb, nbcurrent, selectionne, selectionne2;
 
     public GestionDeReservation pacc;
 
     public CreerVol(GestionDeReservation pa) {
         initComponents();
+        
+        //instance principale
         ca = pa;
-     
-        liste = new ArrayList();
-      
+        
+        //taille liste et 
+        nb = 200;
+        nbcurrent=0;
+        
+        //liste des aeroports à selectionner
+        liste = new String [nb];
+        
+        //liste des aeroports
+        aer=ca.ListeAeroport();
+        for (int i = 0; i<aer.size();i++)
+            {
+                    liste[i] = aer.get(i).getNumero_aeroport()+" "+aer.get(i).getNom_aeroport();
+             }
+        
+        //alimentation des listes d'aeroports darrivee et de depart
+        jList1.setListData(liste);
+        jList2.setListData(liste);
+        
+        //liste des vols d
+        liste2 = new String [nb];
+        vol=ca.ListeVol();
+        for (int i = 0; i<vol.size();i++)
+            {
+                    liste2[i] = vol.get(i).getNumero_vol()+ " " + vol.get(i).getAeroOri().getNom_aeroport()+" "+vol.get(i).getAeroDest().getNom_aeroport();
+             }
+
+        listevols.setListData(liste2);
        
     }
 
@@ -259,30 +289,30 @@ public class CreerVol extends javax.swing.JFrame {
         String prixseconde = prix2class.getText();
         String personneseconde = pers2class.getText();
         
-        int i = jList1.getSelectedIndex();
-        
-        int j = jList2.getSelectedIndex();
-        Aeroport aerodep  = ca.getTab_aeroport().get(i);
-   
-        Aeroport aeroarr = ca.getTab_aeroport().get(i);
+        selectionne = jList1.getSelectedIndex();
+        selectionne2 =jList2.getSelectedIndex();
+        Aeroport aa,ad ;
+        aa = aer.get(selectionne);
+        ad = aer.get(selectionne2);
         
         Vol v = null;
         int result;
         result = ca.testVol(numero);
             if (result == 0) {
                 
-                v = ca.CreerVol(numero, datedep, datearr, heuredep, heurearr, prixpremiere, nombrepremiere, prixseconde, personneseconde, aerodep, aeroarr );
+                v = ca.CreerVol(numero, datedep, datearr, heuredep, heurearr, prixpremiere, nombrepremiere, prixseconde, personneseconde, aa, ad );
             } else {
                 
-                ErreurPersonne enp = new ErreurPersonne(ap);
+                ErreurPersonne enp = new ErreurPersonne(ca);
                 enp.setVisible(true);
                 
             }
-        
-        /* Aeroport aeroportdep = ao.
-        Aeroport aeroportarriv= aa.getText();      
-           Vol v = null;
-           v = pacc.CreerVol(numero, datedep, datearr, heuredep, prixpremiere, nombrepremiere, prixseconde, personneseconde, aeroportdep, aeroportarriv);*/
+              if (nbcurrent < nb) {
+                liste2[nbcurrent] = v.getNumero_vol()+ " " + v.getAeroOri().getNom_aeroport()+" "+v.getAeroDest().getNom_aeroport();
+                listevols.setListData(liste2);
+                nbcurrent++;
+            }
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
