@@ -285,7 +285,7 @@ private ArrayList<Client> cli;
             
         }
         if (nomp.isEmpty() || prenomp.isEmpty() || identifiant.isEmpty() || motdepasse.isEmpty() || motdepasse2.isEmpty()) {
-            ErreurMDP emdp = new ErreurMDP();
+            ErreurChamps emdp = new ErreurChamps();
             emdp.setVisible(true);
             
         } else {
