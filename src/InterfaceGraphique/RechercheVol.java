@@ -1,31 +1,27 @@
-
 package InterfaceGraphique;
 
 import gestiondereservation.GestionDeReservation;
 import gestiondereservation.*;
 
-
 public class RechercheVol extends javax.swing.JFrame {
-private GestionDeReservation pacc;
-private String [] liste;
-private int nb, nbcurrent, selectionne;
-private Client c;
 
-    public RechercheVol(GestionDeReservation pacc,Client c) {
+    private GestionDeReservation pacc;
+    private String[] liste;
+    private int nb, nbcurrent, selectionne;
+    private Client c;
+
+    public RechercheVol(GestionDeReservation pacc, Client c) {
         initComponents();
         this.pacc = pacc;
-        this.c=c;
+        this.c = c;
         nb = 200;
-        nbcurrent=0;
-        liste = new String [nb];
+        nbcurrent = 0;
+        liste = new String[nb];
         liste[0] = "";
         jList1.setListData(liste);
         //liste des aeroports à selectionner
- 
-        
-        
-    }
 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -152,47 +148,44 @@ private Client c;
     }//GEN-LAST:event_A2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      String depart = A1.getText();
-      String arrivee = A2.getText();
-      if (!depart.isEmpty()&& !arrivee.isEmpty()) {
-       Vol v= null ;
-       v = pacc.RechercherVol(depart, arrivee); 
-       
-       
-       if (v!=null){
-           System.out.println(v.getNumero_vol());
-       } 
-       else{
-           ErreurPersonne enp = new ErreurPersonne(pacc);
-           enp.setVisible(true);
-       }
-        
-       if (nbcurrent < nb) {
-                liste[nbcurrent] = v.getNumero_vol()+ " " + v.getAeroOri().getNom_aeroport()+" "+v.getAeroDest().getNom_aeroport();
+        String depart = A1.getText();
+        String arrivee = A2.getText();
+        if (!depart.isEmpty() && !arrivee.isEmpty()) {
+            Vol v = null;
+            v = pacc.RechercherVol(depart, arrivee);
+
+            if (v != null) {
+                    if (nbcurrent < nb) {
+                liste[nbcurrent] = v.getNumero_vol() + " " + v.getAeroOri().getNom_aeroport() + " " + v.getAeroDest().getNom_aeroport();
                 jList1.setListData(liste);
                 nbcurrent++;
             }
+                System.out.println(v.getNumero_vol());
+            } else {
+                ErreurPersonne enp = new ErreurPersonne(pacc);
+                enp.setVisible(true);
+            }
+
+        
     }//GEN-LAST:event_jButton1ActionPerformed
       else {
-          ErreurPersonne enp = new ErreurPersonne(pacc);
-           enp.setVisible(true);
-      }
-    
+            ErreurPersonne enp = new ErreurPersonne(pacc);
+            enp.setVisible(true);
+        }
+
     }
-    
-    
-    
-    
+
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.dispose(); 
+        this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         selectionne = jList1.getSelectedIndex();
-        Vol a ;
+        Vol a;
         a = pacc.getTabVol().get(selectionne);
-        CreerResa rv = new CreerResa (a,pacc,c);
+        CreerResa rv = new CreerResa(a, pacc, c);
         rv.setVisible(true);
     }//GEN-LAST:event_jList1MouseClicked
 

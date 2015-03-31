@@ -1,33 +1,32 @@
 package gestiondereservation;
+
 import java.util.Date;
 import java.util.ArrayList;
-        
+
 public class Reservation {
-    
+
     private int numero_reservation;
     private String date_reservation;
     private int classe;
     private int nombre_places;
-    private int acompte;
+    private double acompte;
     private int paiement;
 
-    private ArrayList<Vol>tab_vol;
+    private ArrayList<Vol> tab_vol;
     private Client client;
-    
- 
-   
 
+    public Reservation(int num_resa, String date_resa, int cl, int nb_places, int prix, double acompte, Vol vol, Client client) {
+        numero_reservation = num_resa;
+        date_reservation = date_resa;
+        classe = cl;
+        nombre_places = nb_places;
+        tab_vol = new ArrayList();
+        tab_vol.add(vol);
+        paiement = prix;
+        this.acompte = acompte;
+        this.client = client;
 
-public Reservation (int num_resa, String date_resa, int cl, int nb_places,  Vol vol, Client client){
-    numero_reservation= num_resa;
-    date_reservation = date_resa;
-    classe = cl;
-    nombre_places = nb_places;
-    tab_vol = new ArrayList();
-    tab_vol.add(vol);
-    this.client = client;
-
-}
+    }
 
     public int getNumero_reservation() {
         return numero_reservation;
@@ -61,11 +60,11 @@ public Reservation (int num_resa, String date_resa, int cl, int nb_places,  Vol 
         this.nombre_places = nombre_places;
     }
 
-    public int getAcompte() {
+    public double getAcompte() {
         return acompte;
     }
 
-    public void setAcompte(int acompte) {
+    public void setAcompte(double acompte) {
         this.acompte = acompte;
     }
 
@@ -92,7 +91,5 @@ public Reservation (int num_resa, String date_resa, int cl, int nb_places,  Vol 
     public void setClient(Client client) {
         this.client = client;
     }
-    
-
 
 }

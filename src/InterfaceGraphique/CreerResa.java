@@ -246,7 +246,7 @@ private Client c;
    
                v.setQuantite_premiere(qc1-Integer.parseInt(r)); 
                int prix = ri* pi1;
-               pacc.CreerResa( jour,1,ri,v,c);
+               pacc.CreerResa( jour,1,ri,prix,v,c);
                RecapResa rcr = new RecapResa (prix);
                 rcr.setVisible(true);
            }else{//si pas assez de places dispo
@@ -262,7 +262,7 @@ private Client c;
            //baisse le nombre de places disponibles
            v.setQuantite_premiere(qc2-Integer.parseInt(r));
            int prix = ri* pi2;
-            pacc.CreerResa( jour,2,ri,v,c);
+            pacc.CreerResa( jour,2,ri,prix,v,c);
             RecapResa rcr = new RecapResa (prix);
             rcr.setVisible(true);
            }
