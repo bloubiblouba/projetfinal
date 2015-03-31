@@ -8,15 +8,15 @@ public class Vol {
     private String date_arrivee;
     private String heure_depart;
     private String heure_arrivee;
-    private String prix_premiere_classe;
-    private String quantite_premiere;
-    private String prix_seconde_classe;
-    private String quantite_seconde;
+    private int prix_premiere_classe;
+    private int quantite_premiere;
+    private int prix_seconde_classe;
+    private int quantite_seconde;
     private ArrayList<Reservation>tab_reservation;
     private Aeroport aeroOri;
     private Aeroport aeroDest;
     
-public Vol (String nv, String dd, String da, String hd, String ha, String px1, String q1, String px2, String q2,Aeroport ori,Aeroport dest ){
+public Vol (String nv, String dd, String da, String hd, String ha, int px1, int q1, int px2, int q2,Aeroport ori,Aeroport dest ){
     numero_vol = nv;
     date_depart = dd;
     date_arrivee = da;
@@ -71,35 +71,35 @@ public Vol (String nv, String dd, String da, String hd, String ha, String px1, S
         this.heure_arrivee = heure_arrivee;
     }
 
-    public String getPrix_premiere_classe() {
+    public int getPrix_premiere_classe() {
         return prix_premiere_classe;
     }
 
-    public void setPrix_premiere_classe(String prix_premiere_classe) {
+    public void setPrix_premiere_classe(int prix_premiere_classe) {
         this.prix_premiere_classe = prix_premiere_classe;
     }
 
-    public String getQuantite_premiere() {
+    public int getQuantite_premiere() {
         return quantite_premiere;
     }
 
-    public void setQuantite_premiere(String quantite_premiere) {
+    public void setQuantite_premiere(int quantite_premiere) {
         this.quantite_premiere = quantite_premiere;
     }
 
-    public String getPrix_seconde_classe() {
+    public int getPrix_seconde_classe() {
         return prix_seconde_classe;
     }
 
-    public void setPrix_seconde_classe(String prix_seconde_classe) {
+    public void setPrix_seconde_classe(int prix_seconde_classe) {
         this.prix_seconde_classe = prix_seconde_classe;
     }
 
-    public String getQuantite_seconde() {
+    public int getQuantite_seconde() {
         return quantite_seconde;
     }
 
-    public void setQuantite_seconde(String quantite_seconde) {
+    public void setQuantite_seconde(int quantite_seconde) {
         this.quantite_seconde = quantite_seconde;
     }
 

@@ -1,7 +1,7 @@
 
 package InterfaceGraphique;
 
-import gestiondereservation.GestionDeReservation;
+import gestiondereservation.*;
 
 /**
  *
@@ -10,14 +10,15 @@ import gestiondereservation.GestionDeReservation;
 public class MenuClient extends javax.swing.JFrame {
     private String nom;
     private GestionDeReservation pacc;
+    private Client c;
 
     /**
      * Creates new form MenuClient
      */
-    public MenuClient(String name, GestionDeReservation pacc) {
+    public MenuClient(String name, GestionDeReservation pacc, Client c) {
         initComponents();
         this.pacc=pacc;
-        
+        this.c=c;
         nom = name;
         labelnom.setText(nom);
         
@@ -118,7 +119,7 @@ public class MenuClient extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RechercheVol rv = new RechercheVol (pacc);
+        RechercheVol rv = new RechercheVol (pacc,c);
         rv.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

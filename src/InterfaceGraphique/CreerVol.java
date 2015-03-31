@@ -294,10 +294,14 @@ public class CreerVol extends javax.swing.JFrame {
         String datearr = da.getText();
         String heuredep = hd.getText();
         String heurearr = hd.getText();
-        String prixpremiere = prix1class.getText();
-        String nombrepremiere = pers1class.getText();
-        String prixseconde = prix2class.getText();
-        String personneseconde = pers2class.getText();
+        String prixpremiere1 = prix1class.getText();
+        String nombrepremiere1 = pers1class.getText();
+        String prixseconde1 = prix2class.getText();
+        String personneseconde1 = pers2class.getText();
+        int prixpremiere = Integer.parseInt(prixpremiere1);
+        int nombrepremiere = Integer.parseInt(nombrepremiere1);
+        int prixseconde = Integer.parseInt(prixseconde1);
+        int personneseconde = Integer.parseInt(personneseconde1);
         
         selectionne = jList1.getSelectedIndex();
         selectionne2 =jList2.getSelectedIndex();
@@ -305,7 +309,7 @@ public class CreerVol extends javax.swing.JFrame {
         aa = aer.get(selectionne);
         ad = aer.get(selectionne2);
         
-        if (!numero.isEmpty()&& !datedep.isEmpty()&& !datearr.isEmpty()&& !heuredep.isEmpty() && !heurearr.isEmpty() && !prixpremiere.isEmpty() && !nombrepremiere.isEmpty() && !prixseconde.isEmpty() && !personneseconde.isEmpty())
+        if (!numero.isEmpty()&& !datedep.isEmpty()&& !datearr.isEmpty()&& !heuredep.isEmpty() && !heurearr.isEmpty() && !prixpremiere1.isEmpty() && !nombrepremiere1.isEmpty() && !prixseconde1.isEmpty() && !personneseconde1.isEmpty())
         {
             
         

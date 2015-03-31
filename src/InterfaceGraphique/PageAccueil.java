@@ -5,6 +5,7 @@
  */
 package InterfaceGraphique;
 
+import gestiondereservation.Client;
 import gestiondereservation.GestionDeReservation;
 public class PageAccueil extends javax.swing.JFrame {
 private GestionDeReservation pacc;
@@ -78,13 +79,11 @@ private GestionDeReservation pacc;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(connect))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(signup)
-                        .addGap(133, 133, 133)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                        .addGap(48, 48, 48)
+                        .addComponent(signup, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,8 +98,8 @@ private GestionDeReservation pacc;
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(connect)
-                    .addComponent(signup))
+                    .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signup, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -147,7 +146,9 @@ private GestionDeReservation pacc;
 
         } else {
             int result;
+            Client c=null;
             result = pacc.testLogin(identifiant, motdepasse);
+            c=pacc.getClient(identifiant, motdepasse);//recupere le client connecté
             
             if (result == 0) {
                 ErreurPersonne enp = new ErreurPersonne(pacc);
@@ -164,7 +165,7 @@ private GestionDeReservation pacc;
 
                 } else {
 
-                    MenuClient mc = new MenuClient(nom,pacc);
+                    MenuClient mc = new MenuClient(nom,pacc,c);
                     mc.setVisible(true);
                     this.dispose();
 

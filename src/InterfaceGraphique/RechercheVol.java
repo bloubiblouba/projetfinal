@@ -8,16 +8,20 @@ import gestiondereservation.*;
 public class RechercheVol extends javax.swing.JFrame {
 private GestionDeReservation pacc;
 private String [] liste;
-        private int nb, nbcurrent;
+private int nb, nbcurrent, selectionne;
+private Client c;
 
-    public RechercheVol(GestionDeReservation pacc) {
+    public RechercheVol(GestionDeReservation pacc,Client c) {
         initComponents();
         this.pacc = pacc;
-                nb = 200;
+        this.c=c;
+        nb = 200;
         nbcurrent=0;
-        
-        //liste des aeroports à selectionner
         liste = new String [nb];
+        liste[0] = "";
+        jList1.setListData(liste);
+        //liste des aeroports à selectionner
+ 
         
         
     }
@@ -162,8 +166,6 @@ private String [] liste;
            ErreurPersonne enp = new ErreurPersonne(pacc);
            enp.setVisible(true);
        }
-       
-        if (!depart.isEmpty()&& !arrivee.isEmpty())
         
        if (nbcurrent < nb) {
                 liste[nbcurrent] = v.getNumero_vol()+ " " + v.getAeroOri().getNom_aeroport()+" "+v.getAeroDest().getNom_aeroport();
@@ -187,7 +189,11 @@ private String [] liste;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        
+        selectionne = jList1.getSelectedIndex();
+        Vol a ;
+        a = pacc.getTabVol().get(selectionne);
+        CreerResa rv = new CreerResa (a,pacc,c);
+        rv.setVisible(true);
     }//GEN-LAST:event_jList1MouseClicked
 
     /**

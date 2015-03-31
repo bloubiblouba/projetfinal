@@ -9,6 +9,7 @@ public class GestionDeReservation {
     private ArrayList<Client> TabClient;
     private ArrayList<Vol> TabVol;
     private ArrayList<Aeroport> TabAeroport;
+    private ArrayList<Reservation> TabResa;
     private Client admin, client1;
     private Vol vol1, vol2;
     private Aeroport aeroport1, aeroport2, aeroport3, aeroport4;
@@ -20,6 +21,7 @@ public class GestionDeReservation {
         TabClient = new ArrayList();
         TabVol = new ArrayList();
         TabAeroport = new ArrayList();
+        TabResa = new ArrayList();
 
         admin = new Client("Agent Tartampion", "Patapouf", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
         client1 = new Client("Michel", "Patalucci", "0666666666", "01", "Champs Elysées", "Paris", "75016", "client", "client");
@@ -38,8 +40,8 @@ public class GestionDeReservation {
         TabAeroport.add(aeroport3);
         TabAeroport.add(aeroport4);
         
-        vol1 = new Vol ("123", "12","15","4" ,"5" ,"12€","1", "45","48", TabAeroport.get(0),TabAeroport.get(1));
-        vol2 = new Vol ("52", "12","15","4" ,"5" ,"12€","1", "45", "78", TabAeroport.get(2),TabAeroport.get(3));
+        vol1 = new Vol ("123", "15/04","16/04" ,"20:04" ,"05:06",12,115, 45,48, TabAeroport.get(0),TabAeroport.get(1));
+        vol2 = new Vol ("52", "14/04","15/04" ,"18:04","06:05" ,12,114, 45, 78, TabAeroport.get(2),TabAeroport.get(3));
         TabVol.add(vol1);
         TabVol.add(vol2);
         
@@ -49,6 +51,10 @@ public class GestionDeReservation {
         aeroport4.setVolsDestination(vol2);
     }
 
+    public ArrayList<Vol> getTabVol() {
+        return TabVol;
+    }
+    
     public Personne CreerPersonne(String n, String pm, String t, String nr, String nomr, String v, String c) {
         Personne p;
         p = new Personne(n, pm, t, nr, nomr, v, c);
@@ -160,6 +166,21 @@ public class GestionDeReservation {
         }
         return t;
     }
+    
+    public Client getClient(String l, String p) {
+    Client a = null;
+
+    if (!TabClient.isEmpty()) {
+        for (int i = 0; i < TabClient.size(); i++) {
+            if (TabClient.get(i).getLogin().equalsIgnoreCase(l) && TabClient.get(i).getMdp().equalsIgnoreCase(p)) {
+                a=TabClient.get(i);
+
+            }
+
+        }
+    }
+    return a;
+    }
 
     public String retourneNom(String login) {
         String nom = new String();
@@ -177,7 +198,7 @@ public class GestionDeReservation {
         return nom;
     }    
      
-    public Vol CreerVol(String nv, String dd, String da, String hd, String ha, String px1, String q1, String px2, String q2,Aeroport ori,Aeroport dest)
+    public Vol CreerVol(String nv, String dd, String da, String hd, String ha, int px1, int q1, int px2, int q2,Aeroport ori,Aeroport dest)
     {
          Vol a;
         a = new Vol (nv,dd,da,hd,ha,px1,q1,px2,q2,ori,dest);
@@ -244,6 +265,19 @@ public class GestionDeReservation {
         return TabAeroport;
     }
     
+    
+    public void CreerResa( String date_resa, int cl, int nb_places,  Vol vol, Client client)
+    {
+         Reservation a;
+         //numero resa auto incrementant
+         int i=TabResa.size();
+         i++;
+     
+        a = new Reservation (i,date_resa ,cl, nb_places, vol, client);
+        TabResa.add(a);
+
+        
+    }
 
     public static void main(String[] args) {
     }

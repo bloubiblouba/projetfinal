@@ -4,9 +4,9 @@ import java.util.ArrayList;
         
 public class Reservation {
     
-    private String numero_reservation;
-    private Date date_reservation;
-    private String classe;
+    private int numero_reservation;
+    private String date_reservation;
+    private int classe;
     private int nombre_places;
     private int acompte;
     private int paiement;
@@ -18,40 +18,38 @@ public class Reservation {
    
 
 
-public Reservation (String num_resa, Date date_resa, String cl, int nb_places, int ac, int p, Client client){
+public Reservation (int num_resa, String date_resa, int cl, int nb_places,  Vol vol, Client client){
     numero_reservation= num_resa;
     date_reservation = date_resa;
     classe = cl;
     nombre_places = nb_places;
-    acompte = ac;
-    paiement = p;
-
     tab_vol = new ArrayList();
+    tab_vol.add(vol);
     this.client = client;
 
 }
 
-    public String getNumero_reservation() {
+    public int getNumero_reservation() {
         return numero_reservation;
     }
 
-    public void setNumero_reservation(String numero_reservation) {
+    public void setNumero_reservation(int numero_reservation) {
         this.numero_reservation = numero_reservation;
     }
 
-    public Date getDate_reservation() {
+    public String getDate_reservation() {
         return date_reservation;
     }
 
-    public void setDate_reservation(Date date_reservation) {
+    public void setDate_reservation(String date_reservation) {
         this.date_reservation = date_reservation;
     }
 
-    public String getClasse() {
+    public int getClasse() {
         return classe;
     }
 
-    public void setClasse(String classe) {
+    public void setClasse(int classe) {
         this.classe = classe;
     }
 
