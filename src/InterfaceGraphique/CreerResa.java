@@ -6,6 +6,7 @@
 package InterfaceGraphique;
 
 import gestiondereservation.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -233,12 +234,12 @@ private Client c;
        int qc2 =v.getQuantite_seconde();
        int pi1=v.getPrix_premiere_classe();
        int pi2=v.getPrix_seconde_classe();
-               
-       System.out.println(rc+""+qc1+""+qc2+""+pi1+""+pi2+""+ri);
-       
+                   
        //date d'aujourd'hui en string
-       String jour = new Date().toString();
-           
+       String jour = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+       
+        System.out.println(jour);
+       
        if(rc==0)//cas premiere classe 
        {
            if(Integer.parseInt(r)<=qc1){
@@ -255,7 +256,7 @@ private Client c;
               
                   
        }
-       else{
+       else if(rc==1){
             if( Integer.parseInt(r)<=qc2){
 
            //baisse le nombre de places disponibles
@@ -270,6 +271,10 @@ private Client c;
            enp.setVisible(true);
            }
            
+       }
+       else{
+           ErreurPersonne enp = new ErreurPersonne(pacc);
+           enp.setVisible(true);
        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
