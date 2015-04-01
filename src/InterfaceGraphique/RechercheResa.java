@@ -5,7 +5,8 @@
  */
 package InterfaceGraphique;
 
-import gestiondereservation.*;
+import gestiondereservation.GestionDeReservation;
+import gestiondereservation.Reservation;
 
 public class RechercheResa extends javax.swing.JFrame {
     private GestionDeReservation pacc;
@@ -48,6 +49,11 @@ public class RechercheResa extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText("Valider");
@@ -76,8 +82,8 @@ public class RechercheResa extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(jButton2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,8 +100,8 @@ public class RechercheResa extends javax.swing.JFrame {
                             .addComponent(jButton2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,9 +110,9 @@ public class RechercheResa extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 String num = A1.getText();
                 int numi= Integer.parseInt(num);
-                   
+            Reservation v ;       
         if (!num.isEmpty()) {
-            Reservation v = null;
+            
             v = pacc.RechercherResa(numi);
             
             if (v != null) {
@@ -130,6 +136,14 @@ public class RechercheResa extends javax.swing.JFrame {
 
     
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+           selectionne = jList1.getSelectedIndex();
+        Reservation a;
+        a = pacc.getTabResa().get(selectionne);
+        PayerResa rv = new PayerResa(a, pacc);
+        rv.setVisible(true);
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments

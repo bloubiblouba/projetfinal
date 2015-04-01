@@ -22,7 +22,7 @@ int prix;
         Prix.setText(Integer.toString(prix));
         
         //acompte=20% du prix
-        Acompte.setText(Double.toString(prix*0.2));
+        Acompte.setText(Integer.toString(prix/5));
     }
 
     /**

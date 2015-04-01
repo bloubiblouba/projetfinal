@@ -9,13 +9,13 @@ public class Reservation {
     private String date_reservation;
     private int classe;
     private int nombre_places;
-    private double acompte;
+    private int acompte;
     private int paiement;
 
     private ArrayList<Vol> tab_vol;
     private Client client;
 
-    public Reservation(int num_resa, String date_resa, int cl, int nb_places, int prix, double acompte, Vol vol, Client client) {
+    public Reservation(int num_resa, String date_resa, int cl, int nb_places, int prix, int acompte, Vol vol, Client client) {
         numero_reservation = num_resa;
         date_reservation = date_resa;
         classe = cl;
@@ -60,11 +60,11 @@ public class Reservation {
         this.nombre_places = nombre_places;
     }
 
-    public double getAcompte() {
+    public int getAcompte() {
         return acompte;
     }
 
-    public void setAcompte(double acompte) {
+    public void setAcompte(int acompte) {
         this.acompte = acompte;
     }
 

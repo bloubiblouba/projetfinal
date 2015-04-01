@@ -24,8 +24,8 @@ public class GestionDeReservation {
         TabAeroport = new ArrayList();
         TabResa = new ArrayList();
 
-        admin = new Client("Agent Tartampion", "Patapouf", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
-        client1 = new Client("Michel", "Patalucci", "0666666666", "01", "Champs Elysées", "Paris", "75016", "client", "client");
+        admin = new Client(1,"Agent Tartampion", "Patapouf", "0666666666", "01", "Champs Elysées", "Paris", "75016", "admin", "admin");
+        client1 = new Client(2,"Michel", "Patalucci", "0666666666", "01", "Champs Elysées", "Paris", "75016", "client", "client");
         aeroport1 = new Aeroport("PAPETE123", "Papeete", "Rue de l'île", "06 65 48 75 95");
         aeroport2 = new Aeroport("BERLIN456", "Berlin", "Rue de l'Allemagne", "87 95 68 54 47");
         aeroport3 = new Aeroport("PORTAU789", "Port au Prince", "Rue de Faubert", "98 65 32 65 45");
@@ -76,7 +76,9 @@ public class GestionDeReservation {
 
     public Client CreerClient(String n, String pm, String t, String nr, String nomr, String v, String c, String log, String mdp) {
         Client cli;
-        cli = new Client(n, pm, t, nr, nomr, v, c, log, mdp);
+        int i = TabResa.size();
+        i++;
+        cli = new Client(i,n, pm, t, nr, nomr, v, c, log, mdp);
         TabClient.add(cli);
         System.out.println(TabClient.size());
         return cli;
@@ -277,17 +279,23 @@ public class GestionDeReservation {
         return TabAeroport;
     }
 
-    public void CreerResa(String date_resa, int cl, int nb_places, int prix, Vol vol, Client client) {
+    public Reservation CreerResa(String date_resa, int cl, int nb_places, int prix, Vol vol, Client client) {
         Reservation a;
         //numero resa auto incrementant
         int i = TabResa.size();
         i++;
 
-        double ac = prix * 0.2;
+        int ac = prix /5;
 
         a = new Reservation(i, date_resa, cl, nb_places, prix, ac, vol, client);
         TabResa.add(a);
+        return a;
 
+    }
+    
+    public void SupprimerResa(Reservation r)
+    {
+        TabResa.remove(r);
     }
 
     public static void main(String[] args) {

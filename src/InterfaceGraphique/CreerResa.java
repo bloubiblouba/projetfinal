@@ -5,23 +5,26 @@
  */
 package InterfaceGraphique;
 
-import gestiondereservation.*;
+import gestiondereservation.Client;
+import gestiondereservation.GestionDeReservation;
+import gestiondereservation.Reservation;
+import gestiondereservation.Vol;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class CreerResa extends javax.swing.JFrame {
 
-private GestionDeReservation pacc;
-private Vol v;
-private String [] liste;
-private Client c;
+    private GestionDeReservation pacc;
+    private Vol v;
+    private String[] liste;
+    private Client c;
 
-    public CreerResa(Vol v,GestionDeReservation pacc, Client c) {
+    public CreerResa(Vol v, GestionDeReservation pacc, Client c) {
         initComponents();
-        this.v=v;
-        this.pacc=pacc;
-        this.c=c;
+        this.v = v;
+        this.pacc = pacc;
+        this.c = c;
         Date.setText(v.getDate_depart());
         Heure.setText(v.getHeure_depart());
         Datea.setText(v.getDate_arrivee());
@@ -32,8 +35,8 @@ private Client c;
         p2.setText(Integer.toString(v.getPrix_seconde_classe()));
         q1.setText(Integer.toString(v.getQuantite_premiere()));
         q2.setText(Integer.toString(v.getQuantite_seconde()));
-        
-        liste = new String [2];
+
+        liste = new String[2];
         liste[0] = "1";
         liste[1] = "2";
         jList1.setListData(liste);
@@ -226,56 +229,56 @@ private Client c;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       int rc=jList1.getSelectedIndex();
-       
-       String r=rp2.getText();
-       int ri=Integer.parseInt(r);
-       int qc1 = v.getQuantite_premiere();
-       int qc2 =v.getQuantite_seconde();
-       int pi1=v.getPrix_premiere_classe();
-       int pi2=v.getPrix_seconde_classe();
-                   
-       //date d'aujourd'hui en string
-       String jour = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-       
-        System.out.println(jour);
-       
-       if(rc==0)//cas premiere classe 
-       {
-           if(Integer.parseInt(r)<=qc1){
-   
-               v.setQuantite_premiere(qc1-Integer.parseInt(r)); 
-               int prix = ri* pi1;
-               pacc.CreerResa( jour,1,ri,prix,v,c);
-               RecapResa rcr = new RecapResa (prix);
-                rcr.setVisible(true);
-           }else{//si pas assez de places dispo
-               ErreurPersonne enp = new ErreurPersonne(pacc);
-           enp.setVisible(true);
-           }
-              
-                  
-       }
-       else if(rc==1){
-            if( Integer.parseInt(r)<=qc2){
+        int rc = jList1.getSelectedIndex();
 
-           //baisse le nombre de places disponibles
-           v.setQuantite_premiere(qc2-Integer.parseInt(r));
-           int prix = ri* pi2;
-            pacc.CreerResa( jour,2,ri,prix,v,c);
-            RecapResa rcr = new RecapResa (prix);
-            rcr.setVisible(true);
-           }
-            else{//si pas assez de places dispo
-               ErreurPersonne enp = new ErreurPersonne(pacc);
-           enp.setVisible(true);
-           }
-           
-       }
-       else{
-           ErreurPersonne enp = new ErreurPersonne(pacc);
-           enp.setVisible(true);
-       }
+        String r = rp2.getText();
+        int ri = Integer.parseInt(r);
+        int qc1 = v.getQuantite_premiere();
+        int qc2 = v.getQuantite_seconde();
+        int pi1 = v.getPrix_premiere_classe();
+        int pi2 = v.getPrix_seconde_classe();
+
+        //date d'aujourd'hui en string
+        String jour = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        Reservation resa = null;
+        System.out.println(jour);
+
+        if (rc == 0)//cas premiere classe 
+        {
+            if (Integer.parseInt(r) <= qc1) {
+
+                v.setQuantite_premiere(qc1 - Integer.parseInt(r));
+                int prix = ri * pi1;
+                resa = pacc.CreerResa(jour, 1, ri, prix, v, c);
+                c.addTabResa(resa);
+                RecapResa rcr = new RecapResa(prix);
+                rcr.setVisible(true);
+            } else {//si pas assez de places dispo
+                ErreurPersonne enp = new ErreurPersonne(pacc);
+                enp.setVisible(true);
+            }
+
+        } else if (rc == 1) {
+            if (Integer.parseInt(r) <= qc2) {
+
+                //baisse le nombre de places disponibles
+                v.setQuantite_premiere(qc2 - Integer.parseInt(r));
+                int prix = ri * pi2;
+                resa = pacc.CreerResa(jour, 1, ri, prix, v, c);
+
+                //ajoute la reservation dans les reservations du client
+                c.addTabResa(resa);
+                RecapResa rcr = new RecapResa(prix);
+                rcr.setVisible(true);
+            } else {//si pas assez de places dispo
+                ErreurPersonne enp = new ErreurPersonne(pacc);
+                enp.setVisible(true);
+            }
+
+        } else {
+            ErreurPersonne enp = new ErreurPersonne(pacc);
+            enp.setVisible(true);
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
