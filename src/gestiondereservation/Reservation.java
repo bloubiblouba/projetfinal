@@ -13,6 +13,7 @@ public class Reservation {
     private int paiement;
 
     private ArrayList<Vol> tab_vol;
+    private ArrayList<Passager> tab_pax;
     private Client client;
 
     public Reservation(int num_resa, String date_resa, int cl, int nb_places, int prix, int acompte, Vol vol, Client client) {
@@ -21,6 +22,7 @@ public class Reservation {
         classe = cl;
         nombre_places = nb_places;
         tab_vol = new ArrayList();
+        tab_pax = new ArrayList();
         tab_vol.add(vol);
         paiement = prix;
         this.acompte = acompte;
