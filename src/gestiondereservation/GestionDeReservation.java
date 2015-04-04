@@ -293,9 +293,10 @@ public class GestionDeReservation {
 
     }
     
-    public void SupprimerResa(Reservation r)
+    public void SupprimerResa(Reservation r, Client c)
     {
         TabResa.remove(r);
+        c.getTabResa().remove(r);
     }
 
     public static void main(String[] args) {

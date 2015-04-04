@@ -23,11 +23,13 @@ public class ModifResa extends javax.swing.JFrame {
         nb = 200;
         nbcurrent = 0;
         liste = new String[nb];
+        for (int i = 0; i<c.getTabResa().size();i++){
         if (nbcurrent < nb) {
             liste[nbcurrent] = "Numéro reservation " + Integer.toString(c.getTabResa().get(nbcurrent).getNumero_reservation());
             jList1.setListData(liste);
             nbcurrent++;
         }
+    }
     }
 
     /**
@@ -43,6 +45,7 @@ public class ModifResa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +63,13 @@ public class ModifResa extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Retour");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -68,7 +78,9 @@ public class ModifResa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
-                        .addComponent(jButton1))
+                        .addComponent(jButton1)
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -80,7 +92,9 @@ public class ModifResa extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(135, 135, 135)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
@@ -100,10 +114,25 @@ public class ModifResa extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         selectionne = jList1.getSelectedIndex();
-        Reservation a;
+        System.out.println(selectionne);
+        Reservation a;          
         a = pacc.getTabResa().get(selectionne);
-        pacc.SupprimerResa(a);
+        
+         if(a.getClient().equals(c))
+         {
+        pacc.SupprimerResa(a,c);
+        liste[selectionne] = "";
+        jList1.setListData(liste);
+         }else
+         {
+                ErreurMDP emdp = new ErreurMDP();
+            emdp.setVisible(true);
+         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +171,7 @@ public class ModifResa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -155,18 +155,22 @@ public class RechercheVol extends javax.swing.JFrame {
             v = pacc.RechercherVol(depart, arrivee);
 
             if (v != null) {
-                    if (nbcurrent < nb) {
-                liste[nbcurrent] = v.getNumero_vol() + " " + v.getAeroOri().getNom_aeroport() + " " + v.getAeroDest().getNom_aeroport();
-                jList1.setListData(liste);
-                nbcurrent++;
-            }
+                for (int i = 0; i < pacc.getTabVol().size(); i++) {
+                    //deuxieme et troisieme condition teste nom d'aeroport d'origine et d'arrivee
+                    if (nbcurrent < nb && pacc.getTabVol().get(i).getAeroOri().getNom_aeroport().equalsIgnoreCase(depart)
+                            && pacc.getTabVol().get(i).getAeroDest().getNom_aeroport().equalsIgnoreCase(arrivee)) {
+                        liste[nbcurrent] = v.getNumero_vol() + " " + v.getAeroOri().getNom_aeroport() + " " + v.getAeroDest().getNom_aeroport();
+                        jList1.setListData(liste);
+                        nbcurrent++;
+                    }
+                }
                 System.out.println(v.getNumero_vol());
             } else {
                 ErreurPersonne enp = new ErreurPersonne(pacc);
                 enp.setVisible(true);
             }
 
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
       else {
             ErreurPersonne enp = new ErreurPersonne(pacc);

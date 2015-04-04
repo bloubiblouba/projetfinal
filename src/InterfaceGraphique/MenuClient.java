@@ -114,8 +114,15 @@ public class MenuClient extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ModifResa rv = new ModifResa (pacc,c);
-        rv.setVisible(true);
+        if(!c.getTabResa().isEmpty())
+        {
+            ModifResa rv = new ModifResa (pacc,c);
+            rv.setVisible(true);
+        }else
+        {
+            ErreurMDP emdp = new ErreurMDP();
+            emdp.setVisible(true);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
