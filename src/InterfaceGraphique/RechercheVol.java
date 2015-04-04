@@ -9,16 +9,19 @@ public class RechercheVol extends javax.swing.JFrame {
     private String[] liste;
     private int nb, nbcurrent, selectionne;
     private Client c;
+    private RechercheVol rv;
 
-    public RechercheVol(GestionDeReservation pacc, Client c) {
+    public RechercheVol(GestionDeReservation pacc, Client c,RechercheVol rv) {
         initComponents();
         this.pacc = pacc;
         this.c = c;
+        this.rv=rv;
         nb = 200;
         nbcurrent = 0;
         liste = new String[nb];
         liste[0] = "";
         jList1.setListData(liste);
+        selectionne=-1;
         //liste des aeroports à selectionner
 
     }
@@ -30,10 +33,10 @@ public class RechercheVol extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         A1 = new javax.swing.JTextField();
         A2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
@@ -43,8 +46,6 @@ public class RechercheVol extends javax.swing.JFrame {
         jLabel1.setText("Rechercher un vol");
 
         jLabel2.setText("Entrez l'aérorport de départ");
-
-        jLabel3.setText("Entrez l'aérorport d'arrivé");
 
         A2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +59,8 @@ public class RechercheVol extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("Entrez l'aérorport d'arrivé");
 
         jButton2.setText("Retour");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -155,18 +158,22 @@ public class RechercheVol extends javax.swing.JFrame {
             v = pacc.RechercherVol(depart, arrivee);
 
             if (v != null) {
-                    if (nbcurrent < nb) {
-                liste[nbcurrent] = v.getNumero_vol() + " " + v.getAeroOri().getNom_aeroport() + " " + v.getAeroDest().getNom_aeroport();
-                jList1.setListData(liste);
-                nbcurrent++;
-            }
+                for (int i = 0; i < pacc.getTabVol().size(); i++) {
+                    //deuxieme et troisieme condition teste nom d'aeroport d'origine et d'arrivee
+                    if (nbcurrent < nb && pacc.getTabVol().get(i).getAeroOri().getNom_aeroport().equalsIgnoreCase(depart)
+                            && pacc.getTabVol().get(i).getAeroDest().getNom_aeroport().equalsIgnoreCase(arrivee)) {
+                        liste[nbcurrent] = v.getNumero_vol() + " " + v.getAeroOri().getNom_aeroport() + " " + v.getAeroDest().getNom_aeroport();
+                        jList1.setListData(liste);
+                        nbcurrent++;
+                    }
+                }
                 System.out.println(v.getNumero_vol());
             } else {
                 ErreurPersonne enp = new ErreurPersonne(pacc);
                 enp.setVisible(true);
             }
 
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
       else {
             ErreurPersonne enp = new ErreurPersonne(pacc);
@@ -183,10 +190,18 @@ public class RechercheVol extends javax.swing.JFrame {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         selectionne = jList1.getSelectedIndex();
+        if(selectionne!=-1)
+        {
         Vol a;
         a = pacc.getTabVol().get(selectionne);
-        CreerResa rv = new CreerResa(a, pacc, c);
-        rv.setVisible(true);
+        CreerResa cr = null;
+        cr = new CreerResa(a, pacc, c, rv,cr);
+        cr.setVisible(true);
+        }
+              else {
+            ErreurPersonne enp = new ErreurPersonne(pacc);
+            enp.setVisible(true);
+        }
     }//GEN-LAST:event_jList1MouseClicked
 
     /**

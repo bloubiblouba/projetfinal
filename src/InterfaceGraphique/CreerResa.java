@@ -19,12 +19,16 @@ public class CreerResa extends javax.swing.JFrame {
     private Vol v;
     private String[] liste;
     private Client c;
+    private RechercheVol rv;
+    private CreerResa cr;
 
-    public CreerResa(Vol v, GestionDeReservation pacc, Client c) {
+    public CreerResa(Vol v, GestionDeReservation pacc, Client c, RechercheVol rv, CreerResa cr) {
         initComponents();
         this.v = v;
         this.pacc = pacc;
         this.c = c;
+        this.rv=rv;
+        this.cr=cr;
         Date.setText(v.getDate_depart());
         Heure.setText(v.getHeure_depart());
         Datea.setText(v.getDate_arrivee());
@@ -70,6 +74,7 @@ public class CreerResa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +111,11 @@ public class CreerResa extends javax.swing.JFrame {
         jLabel5.setText("Nombre de places ");
 
         jButton1.setText("Reserver");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -120,6 +130,13 @@ public class CreerResa extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jLabel4.setText("Classe");
+
+        jButton2.setText("Retour");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,10 +185,12 @@ public class CreerResa extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(q2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(157, 157, 157)
                 .addComponent(jButton1)
-                .addGap(205, 205, 205))
+                .addGap(91, 91, 91)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,8 +216,7 @@ public class CreerResa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -209,9 +227,11 @@ public class CreerResa extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(45, 45, 45))))
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -232,7 +252,12 @@ public class CreerResa extends javax.swing.JFrame {
         int rc = jList1.getSelectedIndex();
 
         String r = rp2.getText();
-        int ri = Integer.parseInt(r);
+        
+        int ri=0;
+        if(!r.isEmpty())
+        {
+        ri = Integer.parseInt(r);
+        }
         int qc1 = v.getQuantite_premiere();
         int qc2 = v.getQuantite_seconde();
         int pi1 = v.getPrix_premiere_classe();
@@ -243,38 +268,43 @@ public class CreerResa extends javax.swing.JFrame {
         Reservation resa = null;
         System.out.println(jour);
 
-        if (rc == 0)//cas premiere classe 
-        {
-            if (Integer.parseInt(r) <= qc1) {
+        if ((rc==0 || rc==1)&& ri!=0) {
+            if (rc == 0)//cas premiere classe 
+            {
+                if (Integer.parseInt(r) <= qc1) {
 
-                v.setQuantite_premiere(qc1 - Integer.parseInt(r));
-                int prix = ri * pi1;
-                resa = pacc.CreerResa(jour, 1, ri, prix, v, c);
-                c.addTabResa(resa);
-                RecapResa rcr = new RecapResa(prix);
-                rcr.setVisible(true);
-            } else {//si pas assez de places dispo
+                    v.setQuantite_premiere(qc1 - Integer.parseInt(r));
+                    int prix = ri * pi1;
+                    resa = pacc.CreerResa(jour, 1, ri, prix, v, c);
+                    c.addTabResa(resa);
+                    RecapResa rcr =new RecapResa(prix,rv,cr);
+                    rcr.setVisible(true);
+                } else {//si pas assez de places dispo
+                    ErreurPersonne enp = new ErreurPersonne(pacc);
+                    enp.setVisible(true);
+                }
+
+            } else if (rc == 1) {
+                if (Integer.parseInt(r) <= qc2) {
+
+                    //baisse le nombre de places disponibles
+                    v.setQuantite_premiere(qc2 - Integer.parseInt(r));
+                    int prix = ri * pi2;
+                    resa = pacc.CreerResa(jour, 1, ri, prix, v, c);
+
+                    //ajoute la reservation dans les reservations du client
+                    c.addTabResa(resa);
+                    RecapResa rcr =new RecapResa(prix,rv,cr);
+                    rcr.setVisible(true);
+                } else {//si pas assez de places dispo
+                    ErreurPersonne enp = new ErreurPersonne(pacc);
+                    enp.setVisible(true);
+                }
+
+            } else {
                 ErreurPersonne enp = new ErreurPersonne(pacc);
                 enp.setVisible(true);
             }
-
-        } else if (rc == 1) {
-            if (Integer.parseInt(r) <= qc2) {
-
-                //baisse le nombre de places disponibles
-                v.setQuantite_premiere(qc2 - Integer.parseInt(r));
-                int prix = ri * pi2;
-                resa = pacc.CreerResa(jour, 1, ri, prix, v, c);
-
-                //ajoute la reservation dans les reservations du client
-                c.addTabResa(resa);
-                RecapResa rcr = new RecapResa(prix);
-                rcr.setVisible(true);
-            } else {//si pas assez de places dispo
-                ErreurPersonne enp = new ErreurPersonne(pacc);
-                enp.setVisible(true);
-            }
-
         } else {
             ErreurPersonne enp = new ErreurPersonne(pacc);
             enp.setVisible(true);
@@ -285,6 +315,14 @@ public class CreerResa extends javax.swing.JFrame {
     private void rp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rp2ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -329,6 +367,7 @@ public class CreerResa extends javax.swing.JFrame {
     private javax.swing.JLabel Heurea;
     private javax.swing.JLabel Numero;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
