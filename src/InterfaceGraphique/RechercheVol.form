@@ -113,11 +113,6 @@
             <Property name="text" type="java.lang.String" value="Entrez l&apos;a&#xe9;rorport de d&#xe9;part"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Entrez l&apos;a&#xe9;rorport d&apos;arriv&#xe9;"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="A1">
         </Component>
         <Component class="javax.swing.JTextField" name="A2">
@@ -132,6 +127,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Entrez l&apos;a&#xe9;rorport d&apos;arriv&#xe9;"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>

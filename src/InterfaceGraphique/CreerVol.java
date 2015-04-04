@@ -27,8 +27,7 @@ public class CreerVol extends javax.swing.JFrame {
         
         //taille liste et 
         nb = 200;
-        nbcurrent=0;
-        
+                
         //liste des aeroports à selectionner
         liste = new String [nb];
         
@@ -52,6 +51,8 @@ public class CreerVol extends javax.swing.JFrame {
              }
 
         listevols.setListData(liste2);
+        
+        nbcurrent=vol.size();
        
     }
 

@@ -30,10 +30,10 @@ public class RechercheVol extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         A1 = new javax.swing.JTextField();
         A2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
@@ -43,8 +43,6 @@ public class RechercheVol extends javax.swing.JFrame {
         jLabel1.setText("Rechercher un vol");
 
         jLabel2.setText("Entrez l'aérorport de départ");
-
-        jLabel3.setText("Entrez l'aérorport d'arrivé");
 
         A2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +56,8 @@ public class RechercheVol extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("Entrez l'aérorport d'arrivé");
 
         jButton2.setText("Retour");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

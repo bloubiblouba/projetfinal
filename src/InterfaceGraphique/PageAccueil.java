@@ -24,9 +24,9 @@ private GestionDeReservation pacc;
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         login = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         password = new javax.swing.JTextField();
         connect = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         signup = new javax.swing.JButton();
 
@@ -34,14 +34,14 @@ private GestionDeReservation pacc;
 
         jLabel1.setText("Login");
 
-        jLabel2.setText("Password");
-
         connect.setText("Sign in");
         connect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 connectActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Password");
 
         jButton2.setText("Exit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
