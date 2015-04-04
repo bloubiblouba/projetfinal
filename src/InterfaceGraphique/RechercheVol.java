@@ -9,16 +9,19 @@ public class RechercheVol extends javax.swing.JFrame {
     private String[] liste;
     private int nb, nbcurrent, selectionne;
     private Client c;
+    private RechercheVol rv;
 
-    public RechercheVol(GestionDeReservation pacc, Client c) {
+    public RechercheVol(GestionDeReservation pacc, Client c,RechercheVol rv) {
         initComponents();
         this.pacc = pacc;
         this.c = c;
+        this.rv=rv;
         nb = 200;
         nbcurrent = 0;
         liste = new String[nb];
         liste[0] = "";
         jList1.setListData(liste);
+        selectionne=-1;
         //liste des aeroports à selectionner
 
     }
@@ -187,10 +190,18 @@ public class RechercheVol extends javax.swing.JFrame {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         selectionne = jList1.getSelectedIndex();
+        if(selectionne!=-1)
+        {
         Vol a;
         a = pacc.getTabVol().get(selectionne);
-        CreerResa rv = new CreerResa(a, pacc, c);
-        rv.setVisible(true);
+        CreerResa cr = null;
+        cr = new CreerResa(a, pacc, c, rv,cr);
+        cr.setVisible(true);
+        }
+              else {
+            ErreurPersonne enp = new ErreurPersonne(pacc);
+            enp.setVisible(true);
+        }
     }//GEN-LAST:event_jList1MouseClicked
 
     /**

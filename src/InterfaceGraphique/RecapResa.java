@@ -12,12 +12,16 @@ package InterfaceGraphique;
  */
 public class RecapResa extends javax.swing.JFrame {
 int prix;
+private RechercheVol rv; 
+private CreerResa cr;
     /**
      * Creates new form RecapResa
      */
-    public RecapResa(int prix) {
+    public RecapResa(int prix, RechercheVol rv, CreerResa cr) {
         initComponents();
                 this.prix=prix;
+                this.rv=rv;
+                this.cr=cr;
 
         Prix.setText(Integer.toString(prix));
         
@@ -112,6 +116,7 @@ int prix;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

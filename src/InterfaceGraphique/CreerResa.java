@@ -19,12 +19,16 @@ public class CreerResa extends javax.swing.JFrame {
     private Vol v;
     private String[] liste;
     private Client c;
+    private RechercheVol rv;
+    private CreerResa cr;
 
-    public CreerResa(Vol v, GestionDeReservation pacc, Client c) {
+    public CreerResa(Vol v, GestionDeReservation pacc, Client c, RechercheVol rv, CreerResa cr) {
         initComponents();
         this.v = v;
         this.pacc = pacc;
         this.c = c;
+        this.rv=rv;
+        this.cr=cr;
         Date.setText(v.getDate_depart());
         Heure.setText(v.getHeure_depart());
         Datea.setText(v.getDate_arrivee());
@@ -273,7 +277,7 @@ public class CreerResa extends javax.swing.JFrame {
                     int prix = ri * pi1;
                     resa = pacc.CreerResa(jour, 1, ri, prix, v, c);
                     c.addTabResa(resa);
-                    RecapResa rcr = new RecapResa(prix);
+                    RecapResa rcr =new RecapResa(prix,rv,cr);
                     rcr.setVisible(true);
                 } else {//si pas assez de places dispo
                     ErreurPersonne enp = new ErreurPersonne(pacc);
@@ -290,7 +294,7 @@ public class CreerResa extends javax.swing.JFrame {
 
                     //ajoute la reservation dans les reservations du client
                     c.addTabResa(resa);
-                    RecapResa rcr = new RecapResa(prix);
+                    RecapResa rcr =new RecapResa(prix,rv,cr);
                     rcr.setVisible(true);
                 } else {//si pas assez de places dispo
                     ErreurPersonne enp = new ErreurPersonne(pacc);

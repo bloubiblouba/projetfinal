@@ -109,14 +109,16 @@ public class MenuClient extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RechercheVol rv = new RechercheVol (pacc,c);
-        rv.setVisible(true);
+        RechercheVol rc = null;
+        rc = new RechercheVol (pacc,c, rc);
+        rc.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(!c.getTabResa().isEmpty())
         {
-            ModifResa rv = new ModifResa (pacc,c);
+            ResaClient rv = null;
+            rv = new ResaClient (pacc,c);
             rv.setVisible(true);
         }else
         {
