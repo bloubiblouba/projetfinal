@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package InterfaceGraphique;
 
 
@@ -73,18 +69,10 @@ private GestionDeReservation pacc;
             }
         });
 
-<<<<<<< HEAD
-        jButton6.setText("Créer Aéroport");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+
 
         jButton2.setText("Rechercher une réservation");
-=======
-        jButton2.setText("Reserche réservation");
->>>>>>> origin/master
+
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

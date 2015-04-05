@@ -51,11 +51,9 @@ private CreerResa cr;
 
         jLabel2.setText("Acompte");
 
-<<<<<<< HEAD
+
         jButton1.setText("OK");
-=======
-        jButton1.setText("Quitter");
->>>>>>> origin/master
+
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -79,11 +77,9 @@ private CreerResa cr;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-<<<<<<< HEAD
-                .addGap(97, 97, 97))
-=======
+
                 .addGap(104, 104, 104))
->>>>>>> origin/master
+
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,15 +94,11 @@ private CreerResa cr;
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-<<<<<<< HEAD
-                .addGap(48, 48, 48)
-                .addComponent(jButton1)
-                .addContainerGap(61, Short.MAX_VALUE))
-=======
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(51, 51, 51))
->>>>>>> origin/master
+
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -61,11 +61,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-=======
                   <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
->>>>>>> origin/master
               </Group>
           </Group>
         </DimensionLayout>
@@ -85,15 +81,9 @@
                           <Component id="jLabel2" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-<<<<<<< HEAD
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="61" max="32767" attributes="0"/>
-=======
                   <EmptySpace pref="58" max="32767" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
->>>>>>> origin/master
               </Group>
           </Group>
         </DimensionLayout>
@@ -115,11 +105,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-<<<<<<< HEAD
-            <Property name="text" type="java.lang.String" value="OK"/>
-=======
             <Property name="text" type="java.lang.String" value="Quitter"/>
->>>>>>> origin/master
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
